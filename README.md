@@ -22,6 +22,29 @@ It's often use the term *lightweight processes* to refer to threads, because cre
 4. Run your java application.
 5. Find the process id (pid) of your application.
 6. In your OS, look for the resources being used by the process.
+
+
+## Defining Threads
+Each thread is associated with an instance of the `Thread` class. There are two ways of implementing concurrent behavior in java:
+
+### Implements Runnable
+When your class is only interested to provide the concurrent behavior. It should implement the `Runnable` interface. And provide an instance of your class when creating the `Thread` instance.
+
+### Extends Thread
+When your class is not only interested to provide the concurrent behavior, but also override some other `Thread`'s behavior. It should extend the `Thread` class. Keep in mind java does not allow multiple inheritance, therefore, you won't be able to extends other classes.
+
+### Exercise 2 - Creating Threads concurrently
+In the *main thread* instantiate and start two new threads.
+
+First Thread: 
+* The class must inherit from the `HelloWorld` class and use the `hello` method to print *hello world* **concurrently**.
+Second Thread:
+*   
+
+
+
+## Thread's Lifecycle and States
+Both examples invoke the `start` method from the `Thread` class in order to start the new thread. 
  
  
 

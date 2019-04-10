@@ -1,4 +1,4 @@
-package com.rroggia.threads;
+package com.rroggia.thread.exercise.one;
 
 public class ProcessThread {
 
