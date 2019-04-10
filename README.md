@@ -15,13 +15,13 @@ By default, the JVM will create not only the *main thread* but also other thread
 It's often use the term *lightweight processes* to refer to threads, because creating a thread requires less resources than creating a process. Because the thread share the process' resource, by killing a process you'll kill its threads.
 
 ### Exercise 1 - Monitoring Threads
-1 - Open the JVisualVM. It's a monitoring tool that comes together with your JDK. You'll find it in the `bin/` folder of the JDK.
-2 - Create a new Java Project.
-3 - Create a `ProcessThread` class and implement the `static void main(String args[])` method.
+1. Open the JVisualVM. It's a monitoring tool that comes together with your JDK. You'll find it in the `bin/` folder of the JDK.
+2. Create a new Java Project.
+3. Create a `ProcessThread` class and implement the `static void main(String args[])` method.
 	* Create a loop without end to ensure the process will never stop.
-4 - Run your java application.
-5 - Find the process id (pid) of your application.
-6 - In your OS, look for the resources being used by the process.
+4. Run your java application.
+5. Find the process id (pid) of your application.
+6. In your OS, look for the resources being used by the process.
  
  
 
