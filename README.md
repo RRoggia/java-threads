@@ -39,7 +39,7 @@ In the *main thread* instantiate and start two new threads.
 First Thread: 
 * The class must inherit from the `HelloWorld` class and use the `hello` method to print *hello world* **concurrently**.
 Second Thread:
-*   
+* The class print the `Thread` information using the `getId` and `getName` methods.  
 
 
 
