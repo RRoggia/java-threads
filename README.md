@@ -1,6 +1,6 @@
 # java-threads
 
-## Concurency
+## Concurrency
 The ability to do more than one thing at the same time.
 
 The Java platform is designed from the ground up to support concurrent programming, with basic concurrency support in the Java programming language and the Java class libraries.
@@ -46,6 +46,43 @@ In the *main thread* instantiate and start two new threads.
 
 ## Thread's Lifecycle and States 
 A thread will always have a state assigned to it. A JVM thread can assume only one state at time. Check the `Thread.State` enum in order to see the available states. You can also check the [Thread.State javadoc](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html).
+
+### start()
+Begins the execution of the thread. The JVM invokes thread's `run()` method.
+
+### interrupt()
+An interrupt is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate. A thread can check if it was interrupted by calling the `interrupted()` method, or by catching the `InterruptedException` thrown by the `Thread` methods.
+
+### Exercise 3 - Interrupting a thread 
+In the *main thread* instantiate and start a new thread. The new thread should sleep for 10 minutes. Again in the *main thread* interrupt the sleep execution after 1 minute. Print in the console the following events:
+	* Thread is created
+	* Thread is started
+	* Thread is interrupted 
+	* Before thread is going to sleep
+	* When the thread execution is interrupted
+	* After thread wakes up
+
+### Exercise 4 - Interrupting a thread
+In the *main thread* instantiate and start a new thread. The new thread should run for a undetermined time (**IT SHOULD NOT GO TO SLEEP**). Print in the console the following events:
+	* Thread is created
+	* Thread is started
+	* Thread is interrupted
+	* When it started its execution
+	* When it was interrupted
+
+### join()
+
+### notify()
+
+### wait()
+
+### Thread.sleep()
+Suspends thread execution during a specified period.
+
+### Thread.currentThread()
+
+
+
  
  
 
