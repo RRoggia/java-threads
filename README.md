@@ -33,18 +33,19 @@ When your class is only interested to provide the concurrent behavior. It should
 ### Extends Thread
 When your class is not only interested to provide the concurrent behavior, but also override some other `Thread`'s behavior. It should extend the `Thread` class. Keep in mind java does not allow multiple inheritance, therefore, you won't be able to extends other classes.
 
+### Starting a thread
+Both examples invoke the `start` method from the `Thread` class in order to start the new thread.
+
 ### Exercise 2 - Creating Threads concurrently
 In the *main thread* instantiate and start two new threads.
 
-First Thread: 
-* The class must inherit from the `HelloWorld` class and use the `hello` method to print *hello world* **concurrently**.
-Second Thread:
-* The class print the `Thread` information using the `getId` and `getName` methods.  
+* First Thread: 
+	* The class must inherit from the `HelloWorld` class and use the `hello` method to print *hello world* **concurrently**.
+* Second Thread:
+	* The class print the `Thread` information using the `getId` and `getName` methods.  
 
-
-
-## Thread's Lifecycle and States
-Both examples invoke the `start` method from the `Thread` class in order to start the new thread. 
+## Thread's Lifecycle and States 
+A thread will always have a state assigned to it. A JVM thread can assume only one state at time. Check the `Thread.State` enum in order to see the available states. You can also check the [Thread.State javadoc](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html).
  
  
 

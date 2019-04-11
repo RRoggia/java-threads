@@ -1,4 +1,4 @@
-package com.rroggia.thread;
+package com.rroggia.thread.states;
 
 public class ThreadStates {
 
@@ -10,26 +10,11 @@ public class ThreadStates {
 
 		System.out.println();
 
-		demonstrateTimedWaiting();
+		demonstrateTimedWaitingState();
 
 		System.out.println();
 
-		Runnable locker = () -> {
-			Thread currentThread = Thread.currentThread();
-			synchronized (object) {
-				System.out.println(currentThread.getId() + " is locking object");
-				for (int i = 0; i < Integer.MAX_VALUE; i--)
-					;
-			}
-		};
-
-		Thread threadA = new Thread(locker);
-		Thread threadB = new Thread(locker);
-		threadA.start();
-		threadB.start();
-		Thread.sleep(1000);
-		System.out.println(threadA.getId() + " " + threadA.getState());
-		System.out.println(threadB.getId() + " " + threadB.getState());
+		demonstrateBlockedState();
 
 	}
 
@@ -49,7 +34,7 @@ public class ThreadStates {
 				"Waited 10 ms, Thread " + thread.getId() + " should have finished. State is " + thread.getState());
 	}
 
-	private static void demonstrateTimedWaiting() throws InterruptedException {
+	private static void demonstrateTimedWaitingState() throws InterruptedException {
 		Thread thread = new Thread(() -> {
 			try {
 				System.out.println("Thread " + Thread.currentThread().getId() + " is going to sleep for 1000ms");
@@ -60,7 +45,28 @@ public class ThreadStates {
 		});
 		thread.start();
 		Thread.sleep(100);
-		System.out.println("Created and started thread " + thread.getId() + ". State is " + thread.getState());
+		System.out.println("Created and started thread " + thread.getId() + ". State is " + thread.getState()); 
+	}
+
+	private static void demonstrateBlockedState() throws InterruptedException {
+		Runnable blocker = () -> {
+			Thread currentThread = Thread.currentThread();
+			synchronized (object) {
+				System.out.println("Thread " + currentThread.getId() + " is locking object");
+				for (int i = 0; i < Integer.MAX_VALUE; i--)
+					if ((i * 3.5 / 8) == 0)
+						;
+			}
+			System.out.println("Thread " + currentThread.getId() + " unlocked object");
+		};
+
+		Thread threadA = new Thread(blocker);
+		Thread threadB = new Thread(blocker);
+		threadA.start();
+		threadB.start();
+		Thread.sleep(100);
+		System.out.println("Thread " + threadA.getId() + " created and started. State is " + threadA.getState());
+		System.out.println("Thread " + threadB.getId() + " created and started. State is " + threadB.getState());
 	}
 
 }
