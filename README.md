@@ -51,10 +51,23 @@ A thread will always have a state assigned to it. A JVM thread can assume only o
 Begins the execution of the thread. The JVM invokes thread's `run()` method.
 
 ### interrupt()
-An interrupt is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate. A thread can check if it was interrupted by calling the `interrupted()` method, or by catching the `InterruptedException` thrown by the `Thread` methods.
+An interrupt is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate. A thread can check if it was interrupted by calling the `Thread.interrupted()` method, or by catching the `InterruptedException` thrown by the `Thread` methods.
+
+### join()
+Causes the current thread to pause its execution until a specified thread terminates its execution.
+
+### Thread.sleep()
+Suspends thread execution during a specified period.
+
+### Thread.currentThread()
+Returns a reference to the currently executing thread object.
+
+### Thread.interrupted()
+Returns whether the thread was interrupted or not. Clears the thread's interrupted status. 
 
 ### Exercise 3 - Interrupting a thread 
 In the *main thread* instantiate and start a new thread. The new thread should sleep for 10 minutes. Again in the *main thread* interrupt the sleep execution after 1 minute. Print in the console the following events:
+
 	* Thread is created
 	* Thread is started
 	* Thread is interrupted 
@@ -64,22 +77,23 @@ In the *main thread* instantiate and start a new thread. The new thread should s
 
 ### Exercise 4 - Interrupting a thread
 In the *main thread* instantiate and start a new thread. The new thread should run for a undetermined time (**IT SHOULD NOT GO TO SLEEP**). Print in the console the following events:
+
 	* Thread is created
 	* Thread is started
 	* Thread is interrupted
 	* When it started its execution
 	* When it was interrupted
 
-### join()
+### Exercise 5 - Interrupting a thread
+In the *main thread* instantiate and start two new threads. 
 
-### notify()
+* First Thread:
+	* Start its execution, sleep for 20000ms and then finish its execution
+* Second Thread
+	* Start its execution, and then wait to thread one to finish its execution. Then finish its own execution
+* In the *main thread* after you started both threads, wait 100 ms and print thread one and two state.
 
-### wait()
 
-### Thread.sleep()
-Suspends thread execution during a specified period.
-
-### Thread.currentThread()
 
 
 
