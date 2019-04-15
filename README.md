@@ -93,6 +93,62 @@ In the *main thread* instantiate and start two new threads.
 	* Start its execution, and then wait to thread one to finish its execution. Then finish its own execution
 * In the *main thread* after you started both threads, wait 100 ms and print thread one and two state.
 
+## Synchronization
+Threads communicate primarily by sharing access to fields and the objects reference fields refer to. This form of communication is extremely efficient, but makes two kinds of errors possible: *thread interference* and *memory consistency* errors. The tool needed to prevent these errors is synchronization.
+
+### Thread interference
+Interference happens when two operations, running in different threads, but acting on the same data, interleave.
+
+The `Counter` class is sharing its fields with several threads. The `increment` and `decrement` methods do the following steps:
+1. Retrieve the current value of c.
+2. Store in the `start` Map the thread id and the value of c.
+2. Increment the retrieved value by 1.
+3. Store the incremented value back in c.
+4. Store in the `finish` Map the thread id and the value of c.
+
+What **we would expect** is that each thread retrieves the state of the c field adds 1 and updates c value. Something like the output below:
+
+```console
+Thread 10 started with 0
+Thread 10 finished with 1
+Thread 11 started with 3
+Thread 11 finished with 4
+Thread 12 started with 2
+Thread 12 finished with 3
+Thread 13 started with 1
+Thread 13 finished with 2
+```
+
+Each thread is only incrementing the value of c by one. But if we execute the code in the `InterferenceExample` class, what we have is:
+
+```console
+Thread 10 started with 0
+Thread 10 finished with 1
+Thread 11 started with 0
+Thread 11 finished with 2
+Thread 12 started with 1
+Thread 12 finished with 3
+...
+```
+
+This execution depicts the thread interference, its implementation is most likely as following:
+
+* Thread 10 starts Counter.c has 0
+* Thread 11 starts Counter.c has 0
+* Thread 10 stores Counter.c to the start map
+* Thread 11 stores Counter.c to to the start map
+* Thread 10 increments Counter.c by 1. **c = 1**.  
+* Thread 10 stores Counter.c to the finish map
+* Thread 12 starts Counter.c has 1
+* Thread 12 stores Counter.c to the start map
+* Thread 11 increments Counter.c by 1. **c = 2**.
+* Thread 11 stores Counters.c to the finish map
+* Thread 12 increments Counter.c by 1. **c = 3**.
+* Thread 12 stores Counter.c to the finish map
+
+This particular interleaving is only one possibility. Thread interference bugs can be difficult to detect and fix.
+
+### Memory Consistency Errors
 
 
 
