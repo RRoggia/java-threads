@@ -149,10 +149,24 @@ This execution depicts the thread interference and the memory consistency error,
 
 Because the programmer cannot ensure that one method execution happened before another one, it's possible to have an inconsistency in the expected state of the `c` value. In addition, The code is also interleaving. Thread interference bugs can be difficult to detect and fix. This sort of behavior happens not only in the java code itself, but also after the java code was transformed into JVM code (example: `c++` and `c--`.
 
-### Happens Before relationship 
+### Happens Before relationship & Synchronized
+This relationship is simply a guarantee that memory writes by one specific statement are visible to another specific statement. There are several actions that create happens-before relationships. One of them is synchronization, as we will see in the following sections.
 
+#### Synchronized methods
+In order to finish the error above is quite easy, you can make usage of the `synchronized` keyword. Example `public synchronized void increment`
 
+Once you do that, it is not possible for two invocations of synchronized methods on the same object to interleave. When one thread is executing a synchronized method for an object, all other threads that invoke synchronized methods for the same object block (suspend execution) until the first thread is done with the object.
 
+Synchronization is built around an internal entity known as the intrinsic lock or monitor lock.  Intrinsic locks enforces exclusive access to an object's state and establishes happens-before relationships that are essential to visibility.
+
+Every object has an intrinsic lock associated with it.
+
+When a thread invokes a synchronized method, it automatically acquires the intrinsic lock for that method's object and releases it when the method returns. The lock release occurs even if the return was caused by an uncaught exception.
+
+#### Synchronized statement
+Unlike synchronized methods, synchronized statements must specify the object that provides the intrinsic lock.
+
+Synchronized statements are also useful for improving concurrency with fine-grained synchronization. 
 
 
  

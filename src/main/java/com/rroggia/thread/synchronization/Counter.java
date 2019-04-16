@@ -1,13 +1,14 @@
 package com.rroggia.thread.synchronization;
 
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Counter {
 
-	public static HashMap<Long, Integer> start = new HashMap<>();
-	public static HashMap<Long, Integer> finish = new HashMap<>();
+	public static Map<Long, Integer> start = new ConcurrentHashMap<>();
+	public static Map<Long, Integer> finish = new ConcurrentHashMap<>();
 
-	private Integer c = 0;
+	protected Integer c = 0;
 
 	public void increment() {
 		start.put(Thread.currentThread().getId(), c);
