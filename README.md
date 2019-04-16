@@ -1,4 +1,6 @@
 # java-threads
+Content is based on:
+* [Oracle tutorial Thread](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html)
 
 ## Concurrency
 The ability to do more than one thing at the same time.
