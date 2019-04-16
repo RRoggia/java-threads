@@ -1,6 +1,12 @@
 # java-threads
 Content is based on:
-* [Oracle tutorial Thread](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html)
+* [Oracle tutorial Thread](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html) [Inprogress]
+* Java Cookbook - chapter 22 - Thread Java [Todo]
+* Java Network Programming - Chapter 3 - Threads [Todo]
+* Java Performance - The definitive guide - Chapter 9 - Thread and Synchronization performance [Todo]
+* Java Pocket Guide - Chapter 14 - Concurrency [Todo]
+* Java Threads [Todo]
+* Learning Java - Chapter 9 - Threads [Todo]
 
 ## Concurrency
 The ability to do more than one thing at the same time.
